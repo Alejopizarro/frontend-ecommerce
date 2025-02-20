@@ -1,19 +1,42 @@
 import { Menu } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import Link from "next/link";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 const ItemsMenuMobile = () => {
   return (
-    <Popover>
-      <PopoverTrigger>
+    <DropdownMenu>
+      <DropdownMenuTrigger>
         <Menu />
-      </PopoverTrigger>
-      <PopoverContent>
-        <Link href="/categories/track-jackets" className="block">
-          Track Jackets
-        </Link>
-      </PopoverContent>
-    </Popover>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>Menu</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>Categorias</DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>Track Jackets</DropdownMenuItem>
+              <DropdownMenuItem>Track Pants</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Más categorias...</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+        <DropdownMenuItem>Ofertas</DropdownMenuItem>
+        <DropdownMenuItem>Carrito de compras</DropdownMenuItem>
+        <DropdownMenuItem>Productos favoritos</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
