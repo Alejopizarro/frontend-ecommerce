@@ -4,14 +4,34 @@ import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/hooks/use-cart";
 import { formatPrice } from "@/lib/formatPrice";
 import CartItem from "./components/cartItem";
+import { makePaymentRequest } from "@/api/payment";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const { items } = useCart();
+  const router = useRouter();
+
   const prices = items.map((product) => product.attributes.price);
   const totalPrice = prices.reduce((total, price) => total + price, 0);
 
+  const buyStripe = async () => {
+    try {
+      const res = await makePaymentRequest.post("/api/orders", {
+        products: items,
+      });
+
+      if (res.data?.stripeSession?.url) {
+        router.push(res.data.stripeSession.url);
+      } else {
+        console.error("No se recibió una URL de Stripe.");
+      }
+    } catch (error) {
+      console.error("Error al procesar el pago:", error);
+    }
+  };
+
   return (
-    <div className="max-w-6xl px-4 py-16 mx-aut sm:px-6 lg:px-8">
+    <div className="max-w-6xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
       <h1 className="mb-5 text-3xl font-bold">Carrito de Compras</h1>
       <div className="grid sm:grid-cols-2 sm:gap-5">
         <div>
@@ -28,24 +48,21 @@ export default function Page() {
           <div className="p-6 rounded-lg bg-slate-100">
             <p className="mb-3 text-lg font-semibold">Resumen de pedido</p>
             <Separator />
-            {items !== null &&
-              items.map((item) => {
-                return (
-                  <div
-                    key={item.id}
-                    className="flex justify-between py-4 items-center"
-                  >
-                    <p>{item.attributes.productName}</p>
-                    <p>{formatPrice(item.attributes.price)}</p>
-                  </div>
-                );
-              })}
+            {items.map((item) => (
+              <div
+                key={item.id}
+                className="flex justify-between py-4 items-center"
+              >
+                <p>{item.attributes.productName}</p>
+                <p>{formatPrice(item.attributes.price)}</p>
+              </div>
+            ))}
             <div className="flex justify-between gap-5 my-4">
               <p className="font-semibold">Total del pedido</p>
               <p className="font-bold">{formatPrice(totalPrice)}</p>
             </div>
             <div className="flex items-center justify-center w-full mt-3">
-              <Button className="w-full" onClick={() => console.log("Comprar")}>
+              <Button className="w-full" onClick={buyStripe}>
                 Comprar
               </Button>
             </div>
