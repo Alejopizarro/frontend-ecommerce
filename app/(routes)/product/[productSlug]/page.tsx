@@ -1,7 +1,6 @@
 "use client";
 
 import { useGetProductsBySlug } from "@/api/getProductBySlug";
-import SkeletonSchema from "@/components/skeletonSchema";
 import { ResponseType } from "@/types/response";
 import { useParams } from "next/navigation";
 import SkeletonProduct from "./components/skeleton-product";
