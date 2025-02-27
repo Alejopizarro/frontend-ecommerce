@@ -8,11 +8,12 @@ import { makePaymentRequest } from "@/api/payment";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const { items } = useCart();
+  const { items, removeAll } = useCart();
   const router = useRouter();
 
   const prices = items.map((product) => product.attributes.price);
   const totalPrice = prices.reduce((total, price) => total + price, 0);
+  // const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
   const buyStripe = async () => {
     try {
@@ -25,13 +26,14 @@ export default function Page() {
       } else {
         console.error("No se recibió una URL de Stripe.");
       }
+      removeAll();
     } catch (error) {
       console.error("Error al procesar el pago:", error);
     }
   };
 
   return (
-    <div className="max-w-6xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+    <div className="max-w-6xl px-4 py-16 mx-auto sm:px-6 lg:px-8 lg:min-h-[80vh]">
       <h1 className="mb-5 text-3xl font-bold">Carrito de Compras</h1>
       <div className="grid sm:grid-cols-2 sm:gap-5">
         <div>
