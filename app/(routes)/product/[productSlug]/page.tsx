@@ -10,7 +10,7 @@ import InfoProduct from "./components/info-product";
 export default function Page() {
   const params = useParams();
   const { productSlug } = params;
-  const { result }: ResponseType = useGetProductsBySlug(productSlug);
+  const { result }: ResponseType = useGetProductsBySlug(`${productSlug}`);
 
   if (result === null) {
     return <SkeletonProduct />;
