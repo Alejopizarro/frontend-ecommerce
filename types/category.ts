@@ -4,10 +4,8 @@ export type CategoryType = {
     categoryName: string;
     slug: string;
     mainImage: {
-      data: {
-        attributes: {
-          url: string;
-        };
+      attributes: {
+        url: string;
       };
     };
   };
