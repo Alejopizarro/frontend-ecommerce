@@ -1,3 +1,4 @@
+"use client";
 import { Menu } from "lucide-react";
 import {
   DropdownMenu,
@@ -11,8 +12,15 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { ResponseType } from "@/types/response";
+import { useGetCategories } from "@/api/getProducts";
+import { CategoryType } from "@/types/category";
+import { useRouter } from "next/navigation";
 
 const ItemsMenuMobile = () => {
+  const { result, loading }: ResponseType = useGetCategories();
+  const router = useRouter();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -25,10 +33,18 @@ const ItemsMenuMobile = () => {
           <DropdownMenuSubTrigger>Categorias</DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>
-              <DropdownMenuItem>Track Jackets</DropdownMenuItem>
-              <DropdownMenuItem>Track Pants</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Más categorias...</DropdownMenuItem>
+              {!loading &&
+                result !== null &&
+                result.map((category: CategoryType) => (
+                  <DropdownMenuItem
+                    key={category.id}
+                    onClick={() =>
+                      router.push(`/category/${category.attributes.slug}`)
+                    }
+                  >
+                    {category.attributes.categoryName}
+                  </DropdownMenuItem>
+                ))}
             </DropdownMenuSubContent>
           </DropdownMenuPortal>
         </DropdownMenuSub>
