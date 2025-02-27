@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import IconButton from "@/components/icon-button";
 import {
   Carousel,
@@ -17,7 +18,7 @@ type ProductCardProps = {
 };
 
 const ProductCard = (props: ProductCardProps) => {
-  const { router } = useRouter();
+  const router = useRouter();
   const { product } = props;
   const { addItem } = useCart();
 
