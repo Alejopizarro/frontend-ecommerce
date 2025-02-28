@@ -28,7 +28,7 @@ export default function Page() {
   return (
     <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
       {result !== null && !loading && (
-        <h1 className="text-3xl font-medium">
+        <h1 className="text-3xl font-medium px-4 py-2">
           {result[0].attributes.category.categoryName}
         </h1>
       )}
@@ -38,6 +38,7 @@ export default function Page() {
         <FiltersControlsCategory
           setFilterBrand={setFilterBrand}
           setFilterSize={setFilterSize}
+          products={result}
         />
 
         <div className="grid gap-5 mt-8 sm:grid-cols-2 md:grid-cols-3 md:gap-10">

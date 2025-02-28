@@ -41,12 +41,23 @@ const ProductCard = (props: ProductCardProps) => {
         <CarouselContent>
           {product.attributes.images.data.map((image) => (
             <CarouselItem key={image.id} className="group">
-              <img
-                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.attributes.url}`}
-                alt="Image"
-                className="rounded-xl"
-              />
-
+              <div className="">
+                <img
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${image.attributes.url}`}
+                  alt="Image"
+                  className="rounded-xl"
+                />
+                {product.attributes.active === false && (
+                  <div className="relative w-full py-2 text-md font-bold text-center text-white bottom-2 bg-primary ">
+                    Vendido
+                  </div>
+                )}
+                {product.attributes.isOffer === true && (
+                  <div className="relative w-full py-2 text-md font-bold text-center text-white bottom-2 bg-red-600 ">
+                    Oferta
+                  </div>
+                )}
+              </div>
               <div className="absolute w-full px-6 trainsition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
                 <div className="flex justify-center gap-x-6">
                   <IconButton
@@ -68,6 +79,11 @@ const ProductCard = (props: ProductCardProps) => {
         </CarouselContent>
       </Carousel>
       <p className="text-1xl text-center">{product.attributes.productName}</p>
+      {product.attributes.isOffer === true && (
+        <p className="font-bold text-center text-decoration-line: line-through">
+          {formatPrice(product.attributes.oldPrice)}
+        </p>
+      )}
       <p className="font-bold text-center">
         {formatPrice(product.attributes.price)}
       </p>
