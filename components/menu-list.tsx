@@ -15,7 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { ResponseType } from "@/types/response";
-import { useGetCategories } from "@/api/getProducts";
+import { useGetCategories } from "@/api/getCategories";
 import { CategoryType } from "@/types/category";
 
 const MenuList = () => {
@@ -44,8 +44,8 @@ const MenuList = () => {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Tienda">
-                Accede a toda tu informacion, tus pedidos y mucho más.
+              <ListItem href="/category" title="Tienda">
+                Accede a todos los productos, categorias y mucho más.
               </ListItem>
               <ListItem href="/docs/installation" title="Ofertas">
                 Seccion dedicada a promociones y descuentos especiales

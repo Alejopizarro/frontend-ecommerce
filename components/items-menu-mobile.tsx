@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { ResponseType } from "@/types/response";
-import { useGetCategories } from "@/api/getProducts";
+import { useGetCategories } from "@/api/getCategories";
 import { CategoryType } from "@/types/category";
 import { useRouter } from "next/navigation";
 
