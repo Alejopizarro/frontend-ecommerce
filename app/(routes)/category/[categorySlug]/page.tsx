@@ -24,6 +24,7 @@ export default function Page() {
         (filterSize === "" || product.attributes.size === filterSize)
     );
 
+  console.log("Result desde category slug: ", categorySlug);
   console.log("Result desde category slug: ", result);
   return (
     <div className="max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
