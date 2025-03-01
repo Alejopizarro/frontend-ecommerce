@@ -15,7 +15,7 @@ export const dataCarouselTop = [
   },
   {
     id: 2,
-    title: "Envio en 24, 48 hs",
+    title: "Envio en 38, 48 hs",
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus, nobis quam illo repudiandae vero fuga? In vero voluptate explicabo impedit architecto, aut voluptatem veniam nisi sapiente nostrum animi corporis. Deleniti?",
     link: "*",
