@@ -13,7 +13,7 @@ const CategoryCard = (props: CategoryCardProps) => {
     <>
       <Link
         key={category.id}
-        href={`/category/${category.attributes.slug}`}
+        href={`/categories/${category.attributes.slug}`}
         className="relative max-w-xs mx-auto overflow-hidden bg-no-repeat bg-cover rounded-lg"
       >
         <img
