@@ -39,7 +39,7 @@ const ItemsMenuMobile = () => {
                   <DropdownMenuItem
                     key={category.id}
                     onClick={() =>
-                      router.push(`/categories/${category.attributes.slug}`)
+                      router.push(`/category/${category.attributes.slug}`)
                     }
                   >
                     {category.attributes.categoryName}

@@ -65,7 +65,7 @@ const MenuList = () => {
                   <ListItem
                     key={category.id}
                     title={category.attributes.categoryName}
-                    href={`/categories/${category.attributes.slug}`}
+                    href={`/category/${category.attributes.slug}`}
                   >
                     Descubre {category.attributes.categoryName} de excelente
                     calidad
